@@ -1,0 +1,9 @@
+Django
+djangorestframework
+psycopg2
+BeautifulSoup4
+requests
+lxml
+coverage
+django-heroku
+gunicorn
