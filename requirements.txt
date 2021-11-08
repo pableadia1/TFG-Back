@@ -5,5 +5,3 @@ BeautifulSoup4
 requests
 lxml
 coverage
-django-heroku
-gunicorn
