@@ -595,5 +595,9 @@ def Scrapeo(ligas):
         link = linkEstadisticas+l
         ScrappingLiga(link)
 
-def cargar(request):   
-    Scrapeo(["/12/La-Liga-Stats"])
+def cargar(request):
+    if request.method=='POST':
+        if 'Iniciar' in request.POST:      
+            Scrapeo(["/12/La-Liga-Stats"])
+            return render(request, 'carga.html')
+    return render(request, 'carga.html')
