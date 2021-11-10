@@ -58,7 +58,7 @@ class maximosEstadisticas(APIView):
             res = "fallo"
         return res
 
-    def get(self,request,id_liga):
+    def post(self,request,id_liga):
         try:
             temporada = request.data["temporada"]
             dato = request.data["dato"]
@@ -77,8 +77,8 @@ class maximosEstadisticas(APIView):
                     return Response({"mensaje":"especifique bien el dato"},status=status.HTTP_400_BAD_REQUEST)
                 else:
                     jug = Jugador.objects.get(id=e.jugador.id)
-                    nombre, equipo, id = jug.nombre, jug.equipoActual.nombre, jug.equipoActual.liga_id
-                    g = Maximos(nombre=nombre,estadistica=estadistica,equipo=equipo)
+                    nombre, equipo, id, id_jugador = jug.nombre, jug.equipoActual.nombre, jug.equipoActual.liga_id, jug.id
+                    g = Maximos(nombre=nombre,estadistica=estadistica,equipo=equipo,id=id_jugador)
                     if id_liga != 0:
                         if id == id_liga:
                             res.append(g)

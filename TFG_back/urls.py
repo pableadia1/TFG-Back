@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path
 
 from Scraping import views
+from Liga.views import ligas,tabla, maximosEstadisticas
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.cargar),
+    path('liga/<int:id_liga>', ligas.as_view(), name="Liga"),
+    path('liga/tabla/<int:id_liga>', tabla.as_view(), name="Tabla"),
+    path('liga/maximos/<int:id_liga>', maximosEstadisticas.as_view(), name="Maximos"),
 ]

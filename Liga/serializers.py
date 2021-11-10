@@ -14,12 +14,14 @@ class EquipoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class Maximos:
-    def __init__(self,nombre,estadistica,equipo):
+    def __init__(self,nombre,estadistica,equipo,id):
         self.nombre = nombre
         self.estadistica = estadistica
         self.equipo = equipo
+        self.id = id
 
 class MaximosSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     nombre = serializers.CharField()
     estadistica = serializers.IntegerField()
     equipo = serializers.CharField()
