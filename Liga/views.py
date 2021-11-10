@@ -30,7 +30,7 @@ class ligas(APIView):
 class tabla(APIView):
     
     def get(self, request, id_liga):
-        equipos = Equipo.objects.filter(liga_id=id_liga)
+        equipos = Equipo.objects.filter(liga_id=id_liga).order_by("-puntos")
         serializer = EquipoSerializer(equipos, many="True")
         if len(equipos) == 0:
             return Response({"mensaje":"No existe dicha liga"},status=status.HTTP_400_BAD_REQUEST)
