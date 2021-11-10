@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from Equipo.views import equipos,equipo
+
 from Scraping import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.cargar),
+    path('equipo/todos/<int:id_liga>', equipos.as_view(),name="Equipos"),
+    path('equipo/<int:id_equipo>', equipo.as_view(),name="Equipo")
 ]
