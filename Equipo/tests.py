@@ -6,7 +6,7 @@ from Equipo.models import Equipo
 
 from Estadisticas.models import *
 
-class LigaTestCase(APITestCase):
+class EquipoTestCase(APITestCase):
 
     def setUp(self):
         self.client = APIClient()
