@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path
 
 from Scraping import views
+from Jugador.views import jugadores,jugador
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.cargar),
+    path('jugador/todos/<int:id_equipo>',jugadores.as_view(), name="Jugadores"),
+    path('jugador/<int:id_jugador>',jugador.as_view(), name="Jugador"),
 ]
