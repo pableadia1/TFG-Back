@@ -20,6 +20,7 @@ from Equipo.views import equipos,equipo
 from Jugador.views import jugadores,jugador
 from Scraping import views
 from Liga.views import ligas,tabla, maximosEstadisticas
+from Estadisticas.views import estadisticasJugador,notasJugador,caracteristicasJugador
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +32,9 @@ urlpatterns = [
     path('equipo/<int:id_equipo>', equipo.as_view(),name="Equipo"),
     path('jugador/todos/<int:id_equipo>',jugadores.as_view(), name="Jugadores"),
     path('jugador/<int:id_jugador>',jugador.as_view(), name="Jugador"),
-
+    path('admin/', admin.site.urls),
+    path('', views.cargar),
+    path('jugador/estadisticas/<int:id_jugador>', estadisticasJugador.as_view(), name="estadisticas"),
+    path('jugador/notas/<int:id_jugador>', notasJugador.as_view(), name="notas"),
+    path('jugador/caracteristicas/<int:id_jugador>', caracteristicasJugador.as_view(), name="caracteristicas"),
 ]
