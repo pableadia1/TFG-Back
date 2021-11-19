@@ -78,7 +78,7 @@ class ScrappingTest(TestCase):
     
     def test_misc(self):
         res = misc(self.s1)
-        self.assertEqual(res[0],(8, 0, 0, 12, 31, 8, 0, 289, 11, 31))
+        self.assertEqual(res[0],(8, 0, 0, 13, 31, 8, 0, 289, 11, 31))
         self.assertEqual(len(res),4)
     
     def test_portero(self):
