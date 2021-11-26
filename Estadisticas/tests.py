@@ -83,6 +83,7 @@ class LigaTestCase(APITestCase):
         expected_result = [{
             "temporada": "2020-2021",
             "equipo": "Equipo1",
+            "posicion" : "CC",
             "amarillas": 3,
             "rojas": 1,
             "goles_paradas": 11,
@@ -103,6 +104,7 @@ class LigaTestCase(APITestCase):
         expected_result = [{
             "temporada": "2020-2021",
             "equipo": "Equipo1",
+            "posicion" : "PO",
             "amarillas": 1,
             "rojas": 0,
             "goles_paradas": 72,
@@ -121,20 +123,18 @@ class LigaTestCase(APITestCase):
     def test_notas_jugador(self):
 
         expected_result = [{
-            "efectividad": 10.0,
+            "efectividad": 5.0,
             "tiros": 5.0,
-            "pasesCortos": 10.0,
-            "pasesMedios": 0.8,
-            "pasesLargos": 10.0,
-            "entradas": 8.0,
-            "presion": 10.0,
-            "paraRegates": 10.0,
+            "pasesCortos": 5.0,
+            "pasesLargos": 5.0,
+            "entradas": 5.0,
+            "presion": 5.0,
+            "paraRegates": 5.0,
             "regates": 0.0,
-            "controles": 0.0,
-            "balonesAereos": 0.0,
+            "controles": 3.0,
+            "balonesAereos": 3.0,
             "temperamento": 10.0,
-            "creacion": 1.7,
-            "recuperaciones": 0.1,
+            "recuperaciones": 3,
             "paradas": 5.7,
             "sinGoles": 10.0
         }]

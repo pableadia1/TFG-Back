@@ -66,12 +66,12 @@ class LigaTestCase(APITestCase):
     
     def test_equipo(self):
         
-        expected_result={
+        expected_result=[{
             "id":8,
             "nombre": "equipo8",
             "escudo": "equipo8.jpg",
             "liga":11
-        }
+        }]
 
         response = self.client.get('/equipo/8')
         self.assertEqual(response.status_code, 200)

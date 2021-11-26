@@ -22,7 +22,7 @@ class ligas(APIView):
         else:
             try:
                 liga = Liga.objects.get(id=id_liga)
-                serializer = LigaSerializer(liga)
+                serializer = LigaSerializer([liga],many="True")
                 return Response(serializer.data)           
             except:   
                 return Response({"mensaje":"No existe dicha liga"},status=status.HTTP_400_BAD_REQUEST)

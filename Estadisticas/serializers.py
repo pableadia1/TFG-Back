@@ -2,8 +2,9 @@ from rest_framework import serializers
 from Estadisticas.models import *
 
 class Estadisticas:
-    def __init__(self,temporada,equipo,amarillas,rojas,goles_paradas,asistencias_cleanSheet,pj,titular,min):
+    def __init__(self,temporada,equipo,posicion,amarillas,rojas,goles_paradas,asistencias_cleanSheet,pj,titular,min):
         self.temporada = temporada
+        self.posicion = posicion
         self.equipo = equipo
         self.amarillas = amarillas
         self.rojas = rojas
@@ -16,6 +17,7 @@ class Estadisticas:
 class EstadisticasJug(serializers.Serializer):
     temporada = serializers.CharField()
     equipo = serializers.CharField()
+    posicion = serializers.CharField()
     amarillas = serializers.IntegerField()
     rojas = serializers.IntegerField()
     goles_paradas = serializers.IntegerField()
@@ -25,11 +27,10 @@ class EstadisticasJug(serializers.Serializer):
     min = serializers.IntegerField()
 
 class Notas:
-    def __init__(self,efectividad,tiros,pasesCortos,pasesMedios,pasesLargos,entradas,presion,paraRegates,regates,controles,balonesAereos,temperamento,creacion,recuperaciones,paradas,sinGoles):
+    def __init__(self,efectividad,tiros,pasesCortos,pasesLargos,entradas,presion,paraRegates,regates,controles,balonesAereos,temperamento,recuperaciones,paradas,sinGoles):
         self.efectividad = efectividad
         self.tiros = tiros
         self.pasesCortos = pasesCortos
-        self.pasesMedios = pasesMedios
         self.pasesLargos = pasesLargos
         self.entradas = entradas
         self.presion = presion
@@ -38,7 +39,6 @@ class Notas:
         self.controles = controles
         self.balonesAereos = balonesAereos
         self.temperamento = temperamento
-        self.creacion = creacion
         self.recuperaciones = recuperaciones
         self.paradas = paradas
         self.sinGoles = sinGoles
@@ -47,7 +47,6 @@ class NotasSerializar(serializers.Serializer):
     efectividad = serializers.FloatField()
     tiros = serializers.FloatField()
     pasesCortos = serializers.FloatField()
-    pasesMedios = serializers.FloatField()
     pasesLargos = serializers.FloatField()
     entradas = serializers.FloatField()
     presion = serializers.FloatField()
@@ -56,7 +55,6 @@ class NotasSerializar(serializers.Serializer):
     controles = serializers.FloatField()
     balonesAereos = serializers.FloatField()
     temperamento = serializers.FloatField()
-    creacion = serializers.FloatField()
     recuperaciones = serializers.FloatField()
     paradas = serializers.FloatField()
     sinGoles = serializers.FloatField()

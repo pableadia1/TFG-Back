@@ -73,7 +73,7 @@ class ScrappingTest(TestCase):
 
     def test_posesion(self):
         res = posesion(self.s1)
-        self.assertEqual(res[0],(2092, 93, 524, 885, 852, 87, 59, 40, 1444, 8869, 18, 1563, 1374))
+        self.assertEqual(res[0],(2092, 93, 524, 885, 852, 87, 59, 40, 1444, '8869', 18, 1563, 1374))
         self.assertEqual(len(res),4)
     
     def test_misc(self):
@@ -103,7 +103,7 @@ class LigaTest(TestCase):
         
     def test_liga(self):
         l = Liga.objects.get(id=self.liga[1].id)
-        self.assertEqual((l.nombre,l.logo,l.pais),("La Liga","La Liga.jpg","Spain"))
+        self.assertEqual((l.nombre,l.logo,l.pais),("La Liga","LaLiga.jpg","Spain"))
 
     def tearDown(self):
         self.liga[1].delete()
@@ -120,7 +120,7 @@ class EquipoTest(TestCase):
 
     def test_equipo(self):
         eqp = Equipo.objects.get(id=self.equipo[1][0].id)
-        self.assertEqual((eqp.nombre,eqp.escudo,eqp.partidosJugados,eqp.victorias,eqp.derrotas,eqp.empates,eqp.golesFavor,eqp.golesContra,eqp.puntos),("Real Sociedad","Real Sociedad.jpg",13,8,1,4,19,10,28))
+        self.assertEqual((eqp.nombre,eqp.escudo,eqp.partidosJugados,eqp.victorias,eqp.derrotas,eqp.empates,eqp.golesFavor,eqp.golesContra,eqp.puntos),("Real Madrid","RealMadrid.jpg",13,9,1,3,32,14,30))
 
     def tearDown(self):
         self.liga.delete()
@@ -137,7 +137,7 @@ class JugadorTest(TestCase):
    
     def test_jugador(self):
         j = Jugador.objects.get(id=self.jugador[0].id)
-        self.assertEqual((j.nombre,j.nombreCompleto,j.nacionalidad,j.fechaDeNacimiento,j.altura,j.peso,j.pie,j.posicion,j.demarcaciones,j.foto,j.equipoActual),("Robin Le Normand","Robin Le Normand","France",datetime.date(1996, 11, 11),187,84,"Derecha","DF",["DC"],"Robin Le Normand.jpg",self.equipo))
+        self.assertEqual((j.nombre,j.nombreCompleto,j.nacionalidad,j.fechaDeNacimiento,j.altura,j.peso,j.pie,j.posicion,j.demarcaciones,j.foto,j.equipoActual),("Robin Le Normand","Robin Le Normand","France",datetime.date(1996, 11, 11),187,84,"Derecha","DF",["DC"],"RobinLeNormand.jpg",self.equipo))
 
     def tearDown(self):
         self.liga.delete()

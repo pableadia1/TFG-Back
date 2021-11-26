@@ -11,14 +11,6 @@ import requests
 import lxml
 import datetime
 
-def obtenerTabla(tab):
-    res = None
-    if tab != None:
-        res = tab.find("tbody").find_all("tr")
-        if len(res) > 4:
-            res = res[-4:]
-    return res
-
 def Zeros(estadistica):
     if estadistica == "":
         estadistica = "0"
@@ -185,7 +177,7 @@ def posesion(s1):
                 dribbles = Zeros(p[14].text)
                 dribblesBien = Zeros(p[13].text)
                 controles = Zeros(p[18].text)
-                distanciaRecorrida = Zeros(yardMetros(p[19].text))
+                distanciaRecorrida = yardMetros(Zeros(p[19].text))
                 controlMal = Zeros(p[24].text)
                 blancoRecepcion = Zeros(p[26].text)
                 recepcionBuena = Zeros(p[27].text)
@@ -417,8 +409,8 @@ def obtenerLiga(url,url2):
     nombreLiga = nl[23:]
     imagen = url.find("div", class_=["media-item logo loader"]).img["src"]
     img = requests.get(imagen)
-    nombreImagen = nombreLiga + ".jpg"
-    with open("img/ligas/" + nombreImagen, 'wb') as imagen:
+    nombreImagen = (nombreLiga + ".jpg").replace(" ","")
+    with open("media/ligas/" + nombreImagen, 'wb') as imagen:
         imagen.write(img.content)
     pais = url.find_all("a")[1].text
 
@@ -452,8 +444,8 @@ def obtenerEquipos(tabla,lg):
         s = soup.find("tbody").find_all("tr")
         escudo = soup.find("div",class_=["media-item"]).img["src"]
         img = requests.get(escudo)
-        nombreImagen = nombreEquipo + ".jpg"
-        with open("img/equipos/" + nombreImagen, 'wb') as imagen:
+        nombreImagen = (nombreEquipo + ".jpg").replace(" ","")
+        with open("media/equipos/" + nombreImagen, 'wb') as imagen:
             imagen.write(img.content)
         equipo = Equipo.objects.create(nombre=nombreEquipo,derrotas=derrotas, empates= empates , victorias = victorias, puntos= ptos,
         escudo= nombreImagen, golesFavor=gf, golesContra=gc, partidosJugados=pjEquipo,liga=lg)
@@ -477,8 +469,8 @@ def datosJugador(res,eqp):
     else:
         fotoJugador = s.img["src"]
         img = requests.get(fotoJugador)
-        nombreImagen = nombre + ".jpg"
-        with open("img/jugadores/"+ nombreImagen, 'wb') as imagen:
+        nombreImagen = (nombre + ".jpg").replace(" ","")
+        with open("media/jugadores/"+ nombreImagen, 'wb') as imagen:
             imagen.write(img.content)
         
     datos = s.find_all("p")
@@ -503,9 +495,13 @@ def datosJugador(res,eqp):
         alt = s.find("span", itemprop="height")
         if alt != None:
             altura = alt.text[:-2]
+        else:
+            altura = None
         pess = s.find("span", itemprop="weight")
         if pess != None:
             peso = pess.text[:-2]
+        else:
+            peso = None
         fechaNacimiento = datos[2].find("span")
         if fechaNacimiento != None:
             fechaNacimiento=fechaNacimiento.get("data-birth")
@@ -531,9 +527,13 @@ def datosJugador(res,eqp):
         alt = s.find("span", itemprop="height")
         if alt != None:
             altura = alt.text[:-2]
+        else:
+            altura = None
         pess = s.find("span", itemprop="weight")
         if pess != None:
             peso = pess.text[:-2]
+        else:
+            peso = None
         fechaNacimiento = datos[3].find("span")
         if fechaNacimiento != None:
             fechaNacimiento=fechaNacimiento.get("data-birth")
@@ -542,8 +542,10 @@ def datosJugador(res,eqp):
     if fechaNacimiento != None:
         fn = fechaNacimiento.split("-")
         fn = datetime.date(int(fn[0]),int(fn[1]),int(fn[2]))
-        jug = Jugador.objects.create(nombre=nombre , nombreCompleto=nombreCompleto, nacionalidad= nacionalidad, fechaDeNacimiento = fn, 
-        altura= altura, peso=peso, pie=pie, posicion = posicion, equipoActual=eqp, foto=nombreImagen, demarcaciones= dem)
+    else:
+        fn = None
+    jug = Jugador.objects.create(nombre=nombre , nombreCompleto=nombreCompleto, nacionalidad= nacionalidad, fechaDeNacimiento = fn, 
+    altura= altura, peso=peso, pie=pie, posicion = posicion, equipoActual=eqp, foto=nombreImagen, demarcaciones= dem)
     
     return (jug,s1)
 

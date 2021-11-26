@@ -25,7 +25,7 @@ class equipo(APIView):
     def get(self, request, id_equipo):
         try:
             equipo = Equipo.objects.get(id=id_equipo)
-            serializer = EquipoSerializer(equipo)
+            serializer = EquipoSerializer([equipo], many = "True")
             return Response(serializer.data)
         except:
             return Response({"mensaje":"No existe dicho equipo"},status=status.HTTP_400_BAD_REQUEST)

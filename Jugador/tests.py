@@ -34,36 +34,41 @@ class JugadorTestCase(APITestCase):
         expected_result =  [{
             "nombre":"jugadorPrueba1",
             "fechaDeNacimiento": "1981-12-01",
-            "foto": "foto.jpg",
             "nacionalidad":"España",
+            "foto": "foto.jpg",
+            "posicion" : "PO",
             "id":1
         },
         {
             "nombre":"jugadorPrueba5",
             "fechaDeNacimiento": "1996-12-01",
-            "foto": "foto.jpg",
             "nacionalidad":"España",
+            "foto": "foto.jpg",
+            "posicion" : "PO",
             "id":5
         },
         {
             "nombre":"jugadorPrueba4",
             "fechaDeNacimiento": "1997-12-01",
-            "foto": "foto.jpg",
             "nacionalidad":"España",
+            "foto": "foto.jpg",
+            "posicion" : "DL",
             "id":4
         },
         {
             "nombre":"jugadorPrueba3",
             "fechaDeNacimiento": "1998-12-01",
-            "foto": "foto.jpg",
             "nacionalidad":"España",
+            "foto": "foto.jpg",
+            "posicion" : "CC",
             "id":3
         },
         {
             "nombre":"jugadorPrueba2",
             "fechaDeNacimiento": "1999-12-01",
-            "foto": "foto.jpg",
             "nacionalidad":"España",
+            "foto": "foto.jpg",
+            "posicion" : "DF",
             "id":2
         }]  
         response = self.client.get('/jugador/todos/1')
@@ -80,6 +85,7 @@ class JugadorTestCase(APITestCase):
             "fechaDeNacimiento": "1997-12-01",
             "foto": "foto.jpg",
             "nacionalidad":"España",
+            "posicion": "DL",
             "id":4
         }]
         response = self.client.post('/jugador/todos/1',{"pos":"DL"},format="json")
@@ -90,7 +96,7 @@ class JugadorTestCase(APITestCase):
     
     def test_jugador(self):
 
-        expected_result = {
+        expected_result = [{
             'altura': None,
             'demarcaciones': None,
             'peso': None,
@@ -103,7 +109,7 @@ class JugadorTestCase(APITestCase):
             "posicion":"CC",
             "equipoActual":1,
             "id":3
-        }
+        }]
         response = self.client.get('/jugador/3')
         self.assertEqual(response.status_code, 200)
 

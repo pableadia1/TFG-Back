@@ -6,3 +6,4 @@ requests
 lxml
 coverage
 python-dateutil
+django-cors-headers

@@ -71,12 +71,12 @@ class LigaTestCase(APITestCase):
         estadisticasGenerales(lisEstGen14,lisEstTJ,self.jugador14)
 
     def test_liga_id(self):
-        expected_result = {
+        expected_result = [{
             "id": 10,
             "nombre": "La Liga",
             "logo":"La Liga.jpg",
             "pais": "Spain"
-            }
+            }]
 
         response = self.client.get('/liga/10')
         self.assertEqual(response.status_code, 200)

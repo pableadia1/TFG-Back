@@ -38,7 +38,7 @@ class jugador(APIView):
     def get(self, request, id_jugador):
         try:
             jugador = Jugador.objects.get(id=id_jugador)
-            serializer = JugadorSerializer(jugador)
+            serializer = JugadorSerializer([jugador],many=True)
             return Response(serializer.data)
         except:
             return Response({"mensaje":"No existe dicho jugador"},status=status.HTTP_400_BAD_REQUEST)
